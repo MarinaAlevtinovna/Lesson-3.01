@@ -21,6 +21,8 @@ target_y = random.randint(0, SCREEN_HEIGHT - target_height)
 target_speed_x = random.choice([-0.1, 0.1])
 target_speed_y = random.choice([-0.1, 0.1])
 
+speed_increase = 0.05
+
 color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
 score = 0
@@ -38,8 +40,15 @@ while running:
                 score += 1
                 target_x = random.randint(0, SCREEN_WIDTH - target_width)
                 target_y = random.randint(0, SCREEN_HEIGHT - target_height)
-                target_speed_x = random.choice([-0.1, 0.1])
-                target_speed_y = random.choice([-0.1, 0.1])
+                if target_speed_x < 0:
+                    target_speed_x -= speed_increase
+                else:
+                    target_speed_x += speed_increase
+
+                if target_speed_y < 0:
+                    target_speed_y -= speed_increase
+                else:
+                    target_speed_y += speed_increase
 
     target_x += target_speed_x
     target_y += target_speed_y
